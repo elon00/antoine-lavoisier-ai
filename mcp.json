@@ -1,0 +1,54 @@
+{
+  "mcpServers": {
+    "antoine-lavoisier-ai": {
+      "command": "cargo",
+      "args": [
+        "run",
+        "--release",
+        "--quiet"
+      ],
+      "env": {
+        "RUST_LOG": "info",
+        "TITAN_PROTOCOL": "LAVOISIER",
+        "FIPS_203_LEVEL": "ML-KEM-768",
+        "FIPS_204_LEVEL": "ML-DSA-65"
+      },
+      "tools": [
+        {
+          "name": "verify_stoichiometric_mass_balance",
+          "description": "Calculates closed-system molar conservation and reactant-product mass equilibrium to microgram precision",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "reactant_masses_g": {
+                "type": "array"
+              },
+              "product_masses_g": {
+                "type": "array"
+              }
+            },
+            "required": [
+              "reactant_masses_g",
+              "product_masses_g"
+            ]
+          }
+        },
+        {
+          "name": "compute_ice_calorimeter_enthalpy",
+          "description": "Quantifies exothermic combustion enthalpy by measuring phase-transition mass of ice melted",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "melted_ice_mass_g": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "melted_ice_mass_g"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
